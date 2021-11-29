@@ -33,12 +33,6 @@ class _EditCourseState extends State<EditCourse> {
     });
   }
 
-  void _changeCourseInstructor(id, name) {
-    setState(() {
-      widget.api.editCourse(id, name);
-    });
-  }
-
   void _deleteCourse(id) {
     setState(() {
       widget.api.deleteCourse(id);

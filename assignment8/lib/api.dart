@@ -19,14 +19,9 @@ class CourseApi {
     return response.data['students'];
   }
 
-  Future editCourse(String id, String name) async {
-    final response = await _dio
-        .post('/editCourseByID', data: {'_id': id, 'courseInstructor': name});
-  }
-
   Future editStudent(String id, String name) async {
     final response =
-        await _dio.post('/editStudentById', data: {'_id': id, 'fname': name});
+        await _dio.post('/editStudentById', data: {'id': id, 'fname': name});
   }
 
   Future deleteCourse(String id) async {
