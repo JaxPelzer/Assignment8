@@ -24,6 +24,11 @@ class CourseApi {
         .post('/editCourseByID', data: {'_id': id, 'courseInstructor': name});
   }
 
+  Future editStudent(String id, String name) async {
+    final response =
+        await _dio.post('/editStudentById', data: {'_id': id, 'fname': name});
+  }
+
   Future deleteCourse(String id) async {
     final response = await _dio.post('/deleteCourseById', data: {'_id': id});
   }

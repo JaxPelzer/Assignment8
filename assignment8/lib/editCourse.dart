@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:assignment8/api.dart';
+import 'package:assignment8/editStudent.dart';
 import 'package:assignment8/main.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,6 @@ class _EditCourseState extends State<EditCourse> {
     widget.api.getStudents().then((data) {
       setState(() {
         students = data;
-        students.sort((a, b) => a.length.compareTo(b.length));
         _dbLoaded = true;
       });
     });
@@ -68,19 +68,24 @@ class _EditCourseState extends State<EditCourse> {
                         MaterialPageRoute(builder: (context) => MyHomePage()));
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                ),
                 Expanded(
                   child: ListView(
                       shrinkWrap: true,
                       padding: EdgeInsets.all(15.0),
                       children: [
-                        ...students
-                            .map<Widget>(
-                              (student) => Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 30),
+                        ...students.map<Widget>((student) => Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 30),
+                              child: TextButton(
+                                onPressed: () => {
+                                  Navigator.pop(context),
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => editStudent(
+                                              student['_id'],
+                                              student['fname'],
+                                              student['lname']))),
+                                },
                                 child: ListTile(
                                   leading: CircleAvatar(
                                     radius: 25,
@@ -97,8 +102,7 @@ class _EditCourseState extends State<EditCourse> {
                                   ),
                                 ),
                               ),
-                            )
-                            .toList(),
+                            ))
                       ]),
                 )
               ])
