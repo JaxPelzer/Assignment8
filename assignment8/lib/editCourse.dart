@@ -39,7 +39,7 @@ class _EditCourseState extends State<EditCourse> {
     });
   }
 
-  void _deleteCourseInstructor(id) {
+  void _deleteCourse(id) {
     setState(() {
       widget.api.deleteCourse(id);
     });
@@ -62,7 +62,7 @@ class _EditCourseState extends State<EditCourse> {
                 ElevatedButton(
                   child: Icon(Icons.delete),
                   onPressed: () {
-                    _deleteCourseInstructor(widget.id);
+                    _deleteCourse(widget.id);
                     Navigator.pop(context);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MyHomePage()));
@@ -70,24 +70,6 @@ class _EditCourseState extends State<EditCourse> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: <Widget>[
-                      TextFormField(
-                        controller: instructorController,
-                      ),
-                      ElevatedButton(
-                          onPressed: () => {
-                                _changeCourseInstructor(
-                                    widget.id, instructorController.text),
-                                Navigator.pop(context),
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MyHomePage())),
-                              },
-                          child: Text("Change Instructor"))
-                    ],
-                  ),
                 ),
                 Expanded(
                   child: ListView(
