@@ -25,6 +25,6 @@ class CourseApi {
   }
 
   Future deleteCourse(String id) async {
-    final response = await _dio.post('/deleteCourseById', data: {'_id': id});
+    final response = await _dio.post('/deleteCourseById', data: {'id': id});
   }
 }
